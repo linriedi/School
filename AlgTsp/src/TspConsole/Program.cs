@@ -7,7 +7,7 @@ namespace TspConsole
 {
     public class Program
     {
-        private static string workPath = @"C:\work\HeuLib\";
+        private static string workPath = @"C:\Users\linri\Desktop\Tsp\";
         private static string instancePath = workPath + @"TSP_Instances\";
         private static string htmlPath = workPath + @"TSP_Solutions\";
 
