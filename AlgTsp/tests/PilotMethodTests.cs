@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TspLib;
+using TspLib.Algos;
 using Xunit;
 
 namespace tests
