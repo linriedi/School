@@ -7,6 +7,8 @@ namespace TspLib.Algos.BeamSearch
 {
     public class BeamService : ISolver
     {
+        private int beamDeph = 1;
+
         public string Id
         {
             get
@@ -27,7 +29,7 @@ namespace TspLib.Algos.BeamSearch
 
             for (int i = 0; i < nofPoints - 1; i++)
             {
-                solution = beam.GetNextSolutionSet(solution, remainingPoints.ToArray(), 1);
+                solution = beam.GetNextSolutionSet(solution, remainingPoints.ToArray(), beamDeph);
                 Console.WriteLine("{0} of {1} done", i, nofPoints);
             }
 
@@ -44,7 +46,7 @@ namespace TspLib.Algos.BeamSearch
             var partialSolutions = new PartialSolution[2];
             partialSolutions[0] = new PartialSolution(points[0]);
             partialSolutions[1] = new PartialSolution(points[1]);
-            return new SolutionSet(partialSolutions);
+            return new SolutionSet(partialSolutions, points.Length);
         }
     }
 }

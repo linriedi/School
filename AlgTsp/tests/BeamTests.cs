@@ -30,7 +30,7 @@ namespace tests
                 new PartialSolution(startPointTwo)
             };
 
-            var solution = beam.GetNextSolutionSet(new SolutionSet(paritalSolutions), nextPoints, 2);
+            var solution = beam.GetNextSolutionSet(new SolutionSet(paritalSolutions.ToArray(), 5), nextPoints, 2);
 
             Assert.Equal(nextPoints[3], solution.ParitalSolutionList[0].Points[1]);
             Assert.Equal(nextPoints[3], solution.ParitalSolutionList[1].Points[1]);

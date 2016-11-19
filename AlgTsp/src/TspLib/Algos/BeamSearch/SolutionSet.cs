@@ -10,19 +10,18 @@ namespace TspLib.Algos.BeamSearch
         
         public PartialSolution[] ParitalSolutionList { get; private set;}
                 
-        public SolutionSet(IEnumerable<PartialSolution> ordered)
+        public SolutionSet(PartialSolution[] ordered, int maxSolutionLength)
         {
-            this.ParitalSolutionList = ordered.Take(BeamWith).ToArray();
+            this.ParitalSolutionList = new PartialSolution[BeamWith];
+            this.Set(ordered);
         }
 
-        internal IEnumerable<Point> GetAllPoints()
+        internal void Set(PartialSolution[] partialSolutions)
         {
-            var list = new List<Point>();
-            foreach (var partiallist in ParitalSolutionList)
+            for(int i = 0; i < BeamWith; i++)
             {
-                list.AddRange(partiallist.Points);
+                this.ParitalSolutionList[i] = partialSolutions[i];
             }
-            return list;
         }
 
         internal Point[] BestSoltuion()
