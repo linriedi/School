@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HeuLib.Extensions;
 
 namespace TspLib.Algos
 {
-    public class NearestNeighbour
+    public class NearestNeighbour : IPathFinder
     {
-        public static NNResult CalculateLength(Point startPoint, IEnumerable<Point> points)
+        public PathResult Find(Point startPoint, IEnumerable<Point> points)
         {
             return GetDistanceToNearestNeightbourOfFirstElement(startPoint, points);
         }
 
-        private static NNResult GetDistanceToNearestNeightbourOfFirstElement(Point currentPoint, IEnumerable<Point> points)
+        private static PathResult GetDistanceToNearestNeightbourOfFirstElement(Point currentPoint, IEnumerable<Point> points)
         {
             var sortedNextPoints = points
                 .OrderBy(p => p.DistanceTo(currentPoint));
@@ -28,7 +29,7 @@ namespace TspLib.Algos
             }
             else
             {
-                return new NNResult(distance, points.Single());
+                return new PathResult(distance, points.Single());
             }
         }
     }

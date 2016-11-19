@@ -1,19 +1,19 @@
 ﻿namespace TspLib.Algos
 {
-    public class NNResult
+    public class PathResult
     {
         public double Distance { get; private set; }
         public Point LastPoint { get; private set; }
 
         public Point FirstPoint { get; private set; }
 
-        public NNResult(double distance, Point point)
+        public PathResult(double distance, Point point)
         {
             this.Distance = distance;
             this.LastPoint = point;
         }
 
-        public NNResult Plus(double distance)
+        public PathResult Plus(double distance)
         {
             this.Distance += distance;
             return this;

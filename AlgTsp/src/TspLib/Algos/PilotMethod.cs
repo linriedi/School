@@ -6,6 +6,13 @@ namespace TspLib.Algos
 {
     public class PilotMethod : ISolver
     {
+        private readonly IPathFinder pathFinder;
+
+        public PilotMethod(IPathFinder pathFinder)
+        {
+            this.pathFinder = pathFinder;
+        }
+
         public IEnumerable<Point> Solve(Instance instance)
         {
             var sortedPoints = instance
@@ -16,18 +23,18 @@ namespace TspLib.Algos
             var nextPoints = sortedPoints
                 .WithoudFirst();
 
-            var list = NewMethod(startPoint, startPoint, nextPoints);
+            var list = this.NewMethod(startPoint, startPoint, nextPoints);
             list.Add(startPoint);
             list.Reverse();
             return list;
         }
 
-        private static List<Point> NewMethod(Point startPoint, Point currentPoint, IEnumerable<Point> fromSecond)
+        private List<Point> NewMethod(Point startPoint, Point currentPoint, IEnumerable<Point> fromSecond)
         {
-            var results = new List<NNResult>();
+            var results = new List<PathResult>();
             foreach (var point in fromSecond)
             {
-                var result = NearestNeighbour.CalculateLength(point, fromSecond.Except(new List<Point> { point }));
+                var result = this.pathFinder.Find(point, fromSecond.Except(new List<Point> { point }));
                 result.Plus(result.LastPoint.DistanceTo(startPoint));
                 result.AddFirstPoint(point);
                 results.Add(result);
@@ -41,7 +48,7 @@ namespace TspLib.Algos
             var nextPoints = fromSecond.Except(new List<Point> { nextPoint });
             if (nextPoints.Count() > 1)
             {
-                var list = NewMethod(startPoint, nextPoint, nextPoints);
+                var list = this.NewMethod(startPoint, nextPoint, nextPoints);
                 list.Add(nextPoint);
                 return list;
             }
