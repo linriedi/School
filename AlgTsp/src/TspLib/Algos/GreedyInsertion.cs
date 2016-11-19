@@ -6,11 +6,14 @@ namespace TspLib.Algos
 {
     public class GreedyInsertion : ISolver
     {
-        /**
-         * Solve the given TSP using greedy insertion.
-         * @param instance The instance to solve.
-         * @return A list of points. Each point in the instance appears exactly once.
-         */
+        public string Id
+        {
+            get
+            {
+                return "GreedyInsertion";
+            }
+        }
+
         public IEnumerable<Point> Solve(Instance instance)
         {
             Point[] points = instance.Points.ToArray();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -79,12 +80,17 @@ namespace TspLib
             builder.AppendLine("</body>");
             builder.AppendLine("</html>");
 
-            //TODO Write to
-            var file = System.IO.File.Create(filePath + ".html");
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+            var file = File.Create(filePath + ".html");
             using (var logWriter = new System.IO.StreamWriter(file))
             {
                 logWriter.Write(builder);
             };
+        }
+
+        internal static void writeToSVG(Instance instance, IEnumerable<Point> solution, object p)
+        {
+            throw new NotImplementedException();
         }
 
         private static void writeSVGLine(Point a, Point b, StringBuilder builder, double xTransform, double yTransform)

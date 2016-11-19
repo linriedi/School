@@ -7,12 +7,15 @@ namespace TspRuns
 {
     public class PilotMethodRuns : TestsBase
     {
-        [Fact]
-        public void PilotMethod_Berlin52()
+        public PilotMethodRuns()
         {
             this.Container.Register<IPathFinder, NearestNeighbour>();
             this.Container.Register<ISolver, PilotMethod>();
-                       
+        }
+
+        [Fact]
+        public void PilotMethod_Berlin52()
+        {
             var service = new TspService(this.Container.Resolve<ISolver>());
             service.Run("berlin52");
         }
@@ -20,10 +23,8 @@ namespace TspRuns
         [Fact]
         public void PilotMethod_PilotTest()
         {
-            this.Container.Register<IPathFinder, NearestNeighbour>();
-            this.Container.Register<ISolver, PilotMethod>();
-
             var service = new TspService(this.Container.Resolve<ISolver>());
+
             service.Run("pilotTests");
         }
     }

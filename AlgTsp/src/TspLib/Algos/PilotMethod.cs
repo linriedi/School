@@ -13,6 +13,14 @@ namespace TspLib.Algos
             this.pathFinder = pathFinder;
         }
 
+        public string Id
+        {
+            get
+            {
+                return "PilotMethod";
+            }
+        }
+
         public IEnumerable<Point> Solve(Instance instance)
         {
             var sortedPoints = instance
@@ -35,7 +43,10 @@ namespace TspLib.Algos
             foreach (var point in fromSecond)
             {
                 var result = this.pathFinder.Find(point, fromSecond.Except(new List<Point> { point }));
-                result.Plus(result.LastPoint.DistanceTo(startPoint));
+
+                //TODO experiment if needed or not
+                //result.Plus(result.LastPoint.DistanceTo(startPoint));
+
                 result.AddFirstPoint(point);
                 results.Add(result);
             }

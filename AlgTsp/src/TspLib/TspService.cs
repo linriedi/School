@@ -19,15 +19,6 @@ namespace TspLib
 
         public void Run(string instanceName)
         {
-            var pathToInstances = "TSP_Instances";
-            var pathToSolutions = "TSP_Solutions";
-
-            var instanceFilenameExtension = ".tsp";
-            var solutionFilenameExtension = ".html";
-
-            var pathToInstance = pathToInstances + "\\" + instanceName + instanceFilenameExtension;
-            var pathToSolution = pathToSolutions + "\\" + instanceName + solutionFilenameExtension;
-
             Console.WriteLine("Loading instance " + instanceName + "...");
 
             Instance instance = Instance.load(instancePath + instanceName);
@@ -41,7 +32,7 @@ namespace TspLib
             Console.WriteLine();
 
             // Generate Visualization of Result, will be stored in directory pathToSolutions
-            Printer.writeToSVG(instance, solution, htmlPath + instanceName);
+            Printer.writeToSVG(instance, solution, htmlPath + this.solver.Id + "\\" + instanceName);
         }
     }
 }
