@@ -7,16 +7,6 @@ namespace TspLib.Algos.BeamSearch
     {
         public SolutionSet GetNextSolutionSet(SolutionSet solution, IEnumerable<Point> points, int beamDepth)
         {
-            //var tempPartialSolutions = new List<PartialSolution>();
-            //foreach (var paritalSolution in solution.ParitalSolutionList)
-            //{
-            //    points = points.Except(paritalSolution.Points);
-            //    foreach (var point in points)
-            //    {
-            //        tempPartialSolutions.Add(new PartialSolution(paritalSolution, point));
-            //    }
-            //}
-
             var tempPartialSolutions = Repete(solution.ParitalSolutionList, points, beamDepth);
 
             var ordered = tempPartialSolutions
