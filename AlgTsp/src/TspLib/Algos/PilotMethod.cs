@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using HeuLib.Extensions;
+using System;
 
 namespace TspLib.Algos
 {
@@ -40,6 +41,8 @@ namespace TspLib.Algos
 
         private List<Point> NewMethod(Point startPoint, Point currentPoint, IEnumerable<Point> fromSecond)
         {
+            Console.WriteLine("currentPoint {0} remaining number of points {1}", currentPoint.Id, fromSecond.Count());
+
             var results = new List<PathResult>();
             Parallel.ForEach(fromSecond, point =>
             {
