@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using HeuLib.Extensions;
 
 namespace TspLib.Algos
@@ -40,7 +41,7 @@ namespace TspLib.Algos
         private List<Point> NewMethod(Point startPoint, Point currentPoint, IEnumerable<Point> fromSecond)
         {
             var results = new List<PathResult>();
-            foreach (var point in fromSecond)
+            Parallel.ForEach(fromSecond, point =>
             {
                 var result = this.pathFinder.Find(point, fromSecond.Except(new List<Point> { point }));
 
@@ -49,7 +50,7 @@ namespace TspLib.Algos
 
                 result.AddFirstPoint(point);
                 results.Add(result);
-            }
+            });
 
             var nextPoint = results
                 .OrderBy(r => r.Distance)

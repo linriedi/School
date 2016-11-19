@@ -14,18 +14,17 @@ namespace TspRuns
         }
 
         [Fact]
-        public void PilotMethod_Berlin52()
+        public void PilotMethod_NearestNeighbour_Berlin52()
         {
             var service = new TspService(this.Container.Resolve<ISolver>());
             service.Run("berlin52");
         }
 
         [Fact]
-        public void PilotMethod_PilotTest()
+        public void PilotMethod_NearestNeighbour_Bier127()
         {
             var service = new TspService(this.Container.Resolve<ISolver>());
-
-            service.Run("pilotTests");
+            service.Run("bier127");
         }
     }
 }
