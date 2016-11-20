@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace TspLib.Algos.BeamSearch
 {
@@ -16,12 +17,13 @@ namespace TspLib.Algos.BeamSearch
             return solution;
         }
 
-        private static IEnumerable<PartialSolution> Repete(IEnumerable<PartialSolution> partialSolutions, IEnumerable<Point> points, int beamDepth)
+        private static IEnumerable<PartialSolution> Repete(PartialSolution[] partialSolutions, IEnumerable<Point> points, int beamDepth)
         {
             var newPartialSolutions = new List<PartialSolution>();
             var temp = new List<PartialSolution>();
-            foreach (var solution in partialSolutions)
+            for (int i = 0; i < partialSolutions.Length; i++)
             {
+                var solution = partialSolutions[i];
                 var remainingPoints = points
                     .Except(solution.Points)
                     .ToArray();
@@ -34,17 +36,17 @@ namespace TspLib.Algos.BeamSearch
                 return newPartialSolutions;
             }
 
-            newPartialSolutions.AddRange(Repete(temp, points, beamDepth));
+            newPartialSolutions.AddRange(Repete(temp.ToArray(), points, beamDepth));
             return newPartialSolutions;
         }
 
         private static IEnumerable<PartialSolution> CreateNewPartialSolution(PartialSolution partialSolution, Point[] points)
         {
             var newPartialSolutions = new PartialSolution[points.Length];
-            for(int i = 0; i < newPartialSolutions.Length; i++)
+            Parallel.For(0, newPartialSolutions.Length, i =>
             {
                 newPartialSolutions[i] = new PartialSolution(partialSolution, points[i]);
-            }
+            });
             return newPartialSolutions;
         }
     }

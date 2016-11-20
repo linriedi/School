@@ -24,10 +24,10 @@ namespace TspConsole
 
             //Beam
             //runSingleTSPInstance("berlin52", new BeamService());
-            runSingleTSPInstance("bier127", new BeamService());
+            //runSingleTSPInstance("bier127", new BeamService());
             //runSingleTSPInstance("pr1002", new BeamService());
             //runSingleTSPInstance("pr2392", new BeamService());
-            //runSingleTSPInstance("rl5915", new BeamService());
+            runSingleTSPInstance("rl5915", new BeamService());
             //runSingleTSPInstance("sw24978");
             //runSingleTSPInstance("reseau_suisse", new BeamService());
 
