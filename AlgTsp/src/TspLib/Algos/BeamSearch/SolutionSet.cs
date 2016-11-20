@@ -24,17 +24,13 @@ namespace TspLib.Algos.BeamSearch
             }
         }
 
-        internal void Attach(PartialSolutionTail[] ordered)
+        internal void Attach(PartialSolutionTail[] tails)
         {
-            var newPartialSolutions = new PartialSolution[BeamWith];
-            for(int i =0; i < ordered.Count(); i++)
+            for(int i = 0; i < tails.Count(); i++)
             {
-                var partialSolutionToAttachTo = this.ParitalSolutionList[ordered[i].Head.Id];
-                var newPartial = new PartialSolution(partialSolutionToAttachTo, ordered[i], i);
-                newPartialSolutions[i] = newPartial;
+                var tail = tails[i];
+                this.ParitalSolutionList[i] = new PartialSolution(tail.Head, tail, i);
             }
-
-            this.ParitalSolutionList = newPartialSolutions;
         }
 
         internal Point[] BestSoltuion()

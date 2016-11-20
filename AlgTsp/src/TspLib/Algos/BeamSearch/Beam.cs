@@ -43,9 +43,8 @@ namespace TspLib.Algos.BeamSearch
                 return newPartialSolutions;
             }
 
-            return null;
-            //newPartialSolutions.AddRange(Repete(temp.ToArray(), points, beamDepth));
-            //return newPartialSolutions;
+            newPartialSolutions.AddRange(Repete(temp.ToArray(), points, beamDepth));
+            return newPartialSolutions;
         }
 
         private static IEnumerable<PartialSolutionTail> CreateNewPartialSolution(PartialSolution partialSolution, Point[] points)

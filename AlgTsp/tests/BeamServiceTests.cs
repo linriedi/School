@@ -15,15 +15,14 @@ namespace tests
         {
             var service = new BeamService();
 
-            var nextPoints = new Point[5];
+            var points = new Point[4];
 
-            nextPoints[0] = new Point(2, 0, 10);
-            nextPoints[1] = new Point(3, 0, 2);
-            nextPoints[2] = new Point(4, 10, 0);
-            nextPoints[3] = new Point(5, 1, 0);
-            nextPoints[4] = new Point(6, 10, 10);
+            points[0] = new Point(1, 0, 0);
+            points[1] = new Point(2, 0, 1);
+            points[2] = new Point(3, 1, 1);
+            points[3] = new Point(4, 1, 0);
 
-            var points = service.GetOptimalPoints(nextPoints);
+           fvar solution = service.GetOptimalPoints(points);
         }
     }
 }

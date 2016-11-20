@@ -19,18 +19,14 @@ namespace TspLib.Algos.BeamSearch
 
         public Point[] GetOptimalPoints(Point[] points)
         {
-            var nofPoints = points.Length;
-            var firstSolution = CreateFirstSolutionSet(points);
-            IEnumerable<Point> remainingPoints = points;
-
-            var beam = new Beam();
-            var solution = firstSolution;
             Console.WriteLine("Start");
+            var beam = new Beam();
 
-            for (int i = 0; i < nofPoints - 1; i++)
+            var solution = CreateFirstSolutionSet(points);
+            for (int i = 0; i < points.Length - 1; i++)
             {
-                solution = beam.GetNextSolutionSet(solution, remainingPoints.ToArray(), beamDeph);
-                Console.WriteLine("{0} of {1} done", i, nofPoints);
+                solution = beam.GetNextSolutionSet(solution, points, beamDeph);
+                Console.WriteLine("{0} of {1} done", i, points.Length);
             }
 
             return solution.BestSoltuion() ;
@@ -43,9 +39,11 @@ namespace TspLib.Algos.BeamSearch
 
         private SolutionSet CreateFirstSolutionSet(Point[] points)
         {
-            var partialSolutions = new PartialSolution[2];
-            partialSolutions[0] = new PartialSolution(points[0]);
-            partialSolutions[1] = new PartialSolution(points[1]);
+            var partialSolutions = new PartialSolution[SolutionSet.BeamWith];
+            for (int i = 0; i < SolutionSet.BeamWith; i++)
+            {
+                partialSolutions[i] = new PartialSolution(points[i]);
+            }
             return new SolutionSet(partialSolutions, points.Length);
         }
     }
