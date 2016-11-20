@@ -8,7 +8,13 @@ namespace TspLib.Algos.BeamSearch
     {
         public SolutionSet GetNextSolutionSet(SolutionSet solution, IEnumerable<Point> points, int beamDepth)
         {
-            var tempPartialSolutions = Repete(solution.ParitalSolutionList, points, beamDepth);
+            var tails = new PartialSolutionTail[solution.ParitalSolutionList.Length];
+            for(int i = 0; i < solution.ParitalSolutionList.Length; i++)
+            {
+                tails[i] = new PartialSolutionTail(solution.ParitalSolutionList[i]);
+            }
+
+            var tempPartialSolutions = Repete(tails, points, beamDepth);
             var ordered = tempPartialSolutions
                 .OrderBy(ps => ps.Distance)
                 .Take(SolutionSet.BeamWith);
@@ -18,17 +24,17 @@ namespace TspLib.Algos.BeamSearch
             return solution;
         }
 
-        private static IEnumerable<PartialSolutionTail> Repete(PartialSolution[] partialSolutions, IEnumerable<Point> points, int beamDepth)
+        private static IEnumerable<PartialSolutionTail> Repete(PartialSolutionTail[] tails, IEnumerable<Point> points, int beamDepth)
         {
             var newPartialSolutions = new List<PartialSolutionTail>();
             var temp = new List<PartialSolutionTail>();
-            for (int i = 0; i < partialSolutions.Length; i++)
+            for (int i = 0; i < tails.Length; i++)
             {
-                var solution = partialSolutions[i];
+                var tail = tails[i];
                 var remainingPoints = points
-                    .Except(solution.Points)
+                    .Except(tail.Head.Points)
                     .ToArray();
-                temp.AddRange(CreateNewPartialSolution(solution, remainingPoints));
+                temp.AddRange(CreateNewPartialSolution(tail.Head, remainingPoints));
             }
             beamDepth--;
             if (beamDepth <= 0)

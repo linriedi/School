@@ -23,13 +23,13 @@ namespace TspConsole
             //runSingleTSPInstance("reseau_suisse");
 
             //Beam
-            //runSingleTSPInstance("berlin52", new BeamService());
+            runSingleTSPInstance("berlin52", new BeamService());
             //runSingleTSPInstance("bier127", new BeamService());
             //runSingleTSPInstance("pr1002", new BeamService());
             //runSingleTSPInstance("pr2392", new BeamService());
             //runSingleTSPInstance("rl5915", new BeamService());
             //runSingleTSPInstance("sw24978");
-            runSingleTSPInstance("reseau_suisse", new BeamService());
+            //runSingleTSPInstance("reseau_suisse", new BeamService());
 
             //runRandomInstances(20);
             Console.ReadLine();

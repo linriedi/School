@@ -29,7 +29,7 @@ namespace TspLib.Algos.BeamSearch
             var newPartialSolutions = new PartialSolution[BeamWith];
             for(int i =0; i < ordered.Count(); i++)
             {
-                var partialSolutionToAttachTo = this.ParitalSolutionList[ordered[i].IdOfHead];
+                var partialSolutionToAttachTo = this.ParitalSolutionList[ordered[i].Head.Id];
                 var newPartial = new PartialSolution(partialSolutionToAttachTo, ordered[i], i);
                 newPartialSolutions[i] = newPartial;
             }
