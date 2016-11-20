@@ -22,7 +22,7 @@ namespace tests
             points[2] = new Point(3, 1, 1);
             points[3] = new Point(4, 1, 0);
 
-           fvar solution = service.GetOptimalPoints(points);
+           var solution = service.GetOptimalPoints(points);
         }
     }
 }
