@@ -9,18 +9,19 @@ namespace TspLib.Algos.BeamSearch
         public SolutionSet GetNextSolutionSet(SolutionSet solution, IEnumerable<Point> points, int beamDepth)
         {
             var tempPartialSolutions = Repete(solution.ParitalSolutionList, points, beamDepth);
-
             var ordered = tempPartialSolutions
-                .OrderBy(ps => ps.Distance);
+                .OrderBy(ps => ps.Distance)
+                .Take(SolutionSet.BeamWith);
 
-            solution.Set(ordered.ToArray());
+            solution.Attach(ordered.ToArray());
+            //solution.Set(ordered.ToArray());
             return solution;
         }
 
-        private static IEnumerable<PartialSolution> Repete(PartialSolution[] partialSolutions, IEnumerable<Point> points, int beamDepth)
+        private static IEnumerable<PartialSolutionTail> Repete(PartialSolution[] partialSolutions, IEnumerable<Point> points, int beamDepth)
         {
-            var newPartialSolutions = new List<PartialSolution>();
-            var temp = new List<PartialSolution>();
+            var newPartialSolutions = new List<PartialSolutionTail>();
+            var temp = new List<PartialSolutionTail>();
             for (int i = 0; i < partialSolutions.Length; i++)
             {
                 var solution = partialSolutions[i];
@@ -36,17 +37,18 @@ namespace TspLib.Algos.BeamSearch
                 return newPartialSolutions;
             }
 
-            newPartialSolutions.AddRange(Repete(temp.ToArray(), points, beamDepth));
-            return newPartialSolutions;
+            return null;
+            //newPartialSolutions.AddRange(Repete(temp.ToArray(), points, beamDepth));
+            //return newPartialSolutions;
         }
 
-        private static IEnumerable<PartialSolution> CreateNewPartialSolution(PartialSolution partialSolution, Point[] points)
+        private static IEnumerable<PartialSolutionTail> CreateNewPartialSolution(PartialSolution partialSolution, Point[] points)
         {
-            var newPartialSolutions = new PartialSolution[points.Length];
-            Parallel.For(0, newPartialSolutions.Length, i =>
+            var newPartialSolutions = new PartialSolutionTail[points.Length];
+            for(int i = 0; i < newPartialSolutions.Length; i++)
             {
-                newPartialSolutions[i] = new PartialSolution(partialSolution, points[i]);
-            });
+                newPartialSolutions[i] = new PartialSolutionTail(partialSolution, points[i]);
+            }
             return newPartialSolutions;
         }
     }

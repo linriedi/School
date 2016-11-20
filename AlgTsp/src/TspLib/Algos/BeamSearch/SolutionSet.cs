@@ -6,7 +6,7 @@ namespace TspLib.Algos.BeamSearch
 {
     public class SolutionSet
     {
-        private static int BeamWith = 2;
+        public static int BeamWith = 2;
         
         public PartialSolution[] ParitalSolutionList { get; private set;}
                 
@@ -22,6 +22,19 @@ namespace TspLib.Algos.BeamSearch
             {
                 this.ParitalSolutionList[i] = partialSolutions[i];
             }
+        }
+
+        internal void Attach(PartialSolutionTail[] ordered)
+        {
+            var newPartialSolutions = new PartialSolution[BeamWith];
+            for(int i =0; i < ordered.Count(); i++)
+            {
+                var partialSolutionToAttachTo = this.ParitalSolutionList[ordered[i].IdOfHead];
+                var newPartial = new PartialSolution(partialSolutionToAttachTo, ordered[i], i);
+                newPartialSolutions[i] = newPartial;
+            }
+
+            this.ParitalSolutionList = newPartialSolutions;
         }
 
         internal Point[] BestSoltuion()
