@@ -6,7 +6,7 @@ namespace TspLib.Algos.BeamSearch
 {
     public class SolutionSet
     {
-        public static int BeamWith = 2;
+        public static int BeamWith = 1;
         
         public PartialSolution[] ParitalSolutionList { get; private set;}
                 
@@ -36,7 +36,7 @@ namespace TspLib.Algos.BeamSearch
         internal Point[] BestSoltuion()
         {
             return this.ParitalSolutionList
-                .OrderBy(p => p.Distance)
+                .OrderBy(p => p.DistanceClosed)
                 .First()
                 .Points;
         }

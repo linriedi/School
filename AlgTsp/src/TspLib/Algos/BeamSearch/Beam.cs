@@ -16,7 +16,7 @@ namespace TspLib.Algos.BeamSearch
 
             var tempPartialSolutions = Repete(tails, points, beamDepth);
             var ordered = tempPartialSolutions
-                .OrderBy(ps => ps.Distance)
+                .OrderBy(ps => ps.ClosedDistance)
                 .Take(SolutionSet.BeamWith);
 
             solution.Attach(ordered.ToArray());
@@ -26,6 +26,11 @@ namespace TspLib.Algos.BeamSearch
 
         private static IEnumerable<PartialSolutionTail> Repete(PartialSolutionTail[] tails, IEnumerable<Point> points, int beamDepth)
         {
+            if ((tails[0].Points.Length + tails[0].Head.Points.Length) >= points.Count())
+            {
+                return tails;
+            }
+
             var newPartialSolutions = new List<PartialSolutionTail>();
             var temp = new List<PartialSolutionTail>();
             for (int i = 0; i < tails.Length; i++)
@@ -33,8 +38,9 @@ namespace TspLib.Algos.BeamSearch
                 var tail = tails[i];
                 var remainingPoints = points
                     .Except(tail.Head.Points)
+                    .Except(tail.Points)
                     .ToArray();
-                temp.AddRange(CreateNewPartialSolution(tail.Head, remainingPoints));
+                temp.AddRange(CreateNewPartialSolution(tail, remainingPoints));
             }
             beamDepth--;
             if (beamDepth <= 0)
@@ -47,12 +53,12 @@ namespace TspLib.Algos.BeamSearch
             return newPartialSolutions;
         }
 
-        private static IEnumerable<PartialSolutionTail> CreateNewPartialSolution(PartialSolution partialSolution, Point[] points)
+        private static IEnumerable<PartialSolutionTail> CreateNewPartialSolution(PartialSolutionTail tail, Point[] points)
         {
             var newPartialSolutions = new PartialSolutionTail[points.Length];
             for(int i = 0; i < newPartialSolutions.Length; i++)
             {
-                newPartialSolutions[i] = new PartialSolutionTail(partialSolution, points[i]);
+                newPartialSolutions[i] = new PartialSolutionTail(tail, points[i]);
             }
             return newPartialSolutions;
         }

@@ -23,8 +23,11 @@ namespace TspLib.Algos.BeamSearch
             var beam = new Beam();
 
             var solution = CreateFirstSolutionSet(points);
-            for (int i = 0; i < points.Length - 1; i++)
+
+            int i = 0;
+            while(solution.ParitalSolutionList[0].Points.Count() < points.Count())
             {
+                i++;
                 solution = beam.GetNextSolutionSet(solution, points, beamDeph);
                 Console.WriteLine("{0} of {1} done", i, points.Length);
             }

@@ -13,7 +13,9 @@ namespace TspLib.Algos.BeamSearch
 
         public Point LastPoint { get; private set; }
 
-        public double Distance { get; private set; }
+        public double DistanceClosed { get; private set; }
+
+        public double DistanceOpen { get; private set; }
 
         public int Id { get; private set; }
 
@@ -22,11 +24,12 @@ namespace TspLib.Algos.BeamSearch
             this.Id = id;
 
             var points = paritalSolution.Points.ToList();
-            points.Add(partialSolutionTail.LastPoint);
+            points.AddRange(partialSolutionTail.Points);
             this.Points = points.ToArray();
 
             var length = this.Points.Length;
-            this.Distance += this.Points[length - 2].DistanceTo(this.Points[length - 1]);
+            this.DistanceClosed += partialSolutionTail.ClosedDistance;
+            this.DistanceOpen = paritalSolution.DistanceOpen + partialSolutionTail.DistanceOpen;
 
             this.LastPoint = partialSolutionTail.LastPoint;
         }
