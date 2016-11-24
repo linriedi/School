@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using TspLib.Extensions;
 
 namespace TspLib.FiloIO
 {
@@ -45,7 +46,7 @@ namespace TspLib.FiloIO
             builder.AppendLine("<div class=\"hoverbg\" style=\"position:absolute; top:10;left:10; z-index:100;\">");
             builder.AppendLine("<p style=\"font-size:30px\">" + instance.Name + "</p>");
             builder.AppendLine("<p style=\"font-size:15px\">" + instance.Comment + "</p>");
-            builder.AppendLine("<p style=\"font-size:30px\">Total distance: " + ((int)(Utils.euclideanDistance2D(solutionPoint) * 10) / 10.0) + "</p>");
+            builder.AppendLine("<p style=\"font-size:30px\">Total distance: " + ((int)(solutionPoint.EuclideanLength() * 10) / 10.0) + "</p>");
             builder.AppendLine("</div>");
             builder.AppendLine("<svg viewBox=\"0 0 " + width + " " + height + "\" style=\"position:absolute; top:0; left:0; bottom:0; right:0; z-index:1;\">");
 

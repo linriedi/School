@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace HeuLib.Extensions
 {
-    public static class IEnumerableExtensions
+    public static class EnumerableExtensions
     {
         public static IEnumerable<T> WithoudFirst<T>(this IEnumerable<T> input)
         {

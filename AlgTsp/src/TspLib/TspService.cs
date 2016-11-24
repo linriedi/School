@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using TspLib.Algos;
+using TspLib.Extensions;
 using TspLib.FiloIO;
 
 namespace TspLib
@@ -29,7 +30,7 @@ namespace TspLib
             Console.WriteLine("Start generating a solution...");
             var solution = this.solver.Solve(instance.Points);
 
-            Console.WriteLine("Solution for " + instanceName + " has length: " + Utils.euclideanDistance2D(solution.ToList()));
+            Console.WriteLine("Solution for " + instanceName + " has length: " + solution.ToList().EuclideanLength());
             Console.WriteLine();
 
             // Generate Visualization of Result, will be stored in directory pathToSolutions
