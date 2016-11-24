@@ -22,7 +22,7 @@ namespace TspLib
         {
             Console.WriteLine("Loading instance " + instanceName + "...");
 
-            Instance instance = Instance.Load(instancePath + instanceName);
+            var instance = InstanceFactory.Load(instancePath + instanceName);
 
             Console.WriteLine("Instance has " + instance.Points.Count() + " points.");
 
