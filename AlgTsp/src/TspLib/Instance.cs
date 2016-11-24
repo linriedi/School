@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace TspLib
 {
@@ -11,7 +10,7 @@ namespace TspLib
 
         public IEnumerable<Point> Points { get; private set; }
 
-        public Instance(String name, String comment, IEnumerable<Point> points)
+        public Instance(string name, string comment, IEnumerable<Point> points)
         {
             this.Name = name;
             this.Comment = comment;
