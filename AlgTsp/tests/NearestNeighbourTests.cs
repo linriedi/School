@@ -2,6 +2,7 @@
 using tests.Infrastructure;
 using TspLib;
 using TspLib.Algos;
+using TspLib.Algos.Interfaces;
 using Xunit;
 
 namespace tests

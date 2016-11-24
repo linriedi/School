@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using HeuLib.Extensions;
+using TspLib.Algos.Interfaces;
 
 namespace TspLib.Algos
 {

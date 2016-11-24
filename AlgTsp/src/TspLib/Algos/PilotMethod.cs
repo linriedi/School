@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HeuLib.Extensions;
 using System;
+using TspLib.Algos.Interfaces;
 
 namespace TspLib.Algos
 {

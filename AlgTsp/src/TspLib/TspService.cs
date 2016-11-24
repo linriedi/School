@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using TspLib.Algos;
+using TspLib.Algos.Interfaces;
 using TspLib.Extensions;
 using TspLib.FiloIO;
 

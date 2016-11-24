@@ -1,6 +1,7 @@
 ﻿using tests.Infrastructure;
 using TspLib;
 using TspLib.Algos;
+using TspLib.Algos.Interfaces;
 using Xunit;
 
 namespace TspRuns
@@ -9,7 +10,7 @@ namespace TspRuns
     {
         public PilotMethodRuns()
         {
-            this.Container.Register<IPathFinder, NearestNeighbour>();
+            Container.Register<IPathFinder, NearestNeighbour>();
             this.Container.Register<ISolver, PilotMethod>();
         }
 

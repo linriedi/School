@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace TspLib.Algos
+namespace TspLib.Algos.Interfaces
 {
     public interface IPathFinder
     {

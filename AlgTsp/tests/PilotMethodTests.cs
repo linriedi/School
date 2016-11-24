@@ -3,6 +3,7 @@ using TspLib;
 using TspLib.Algos;
 using Xunit;
 using tests.Infrastructure;
+using TspLib.Algos.Interfaces;
 
 namespace tests
 {
