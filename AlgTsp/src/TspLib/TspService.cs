@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using TspLib.Algos;
+using TspLib.FiloIO;
 
 namespace TspLib
 {
@@ -32,7 +33,7 @@ namespace TspLib
             Console.WriteLine();
 
             // Generate Visualization of Result, will be stored in directory pathToSolutions
-            Printer.writeToSVG(instance, solution, htmlPath + this.solver.Id + "\\" + instanceName);
+            Printer.WriteToSVG(instance, solution, htmlPath + this.solver.Id + "\\" + instanceName);
         }
     }
 }

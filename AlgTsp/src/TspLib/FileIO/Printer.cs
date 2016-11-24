@@ -4,19 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace TspLib
+namespace TspLib.FiloIO
 {
     public class Printer
     {
-
-        /**
-         * Export an instance and it's corresponding solution to a HTML file containing an SVG representing the solution.
-         * @param instance
-         * @param solution 
-         * @param filePath Path to the file to write to.
-         * @throws IOException
-         */
-        public static void writeToSVG(Instance instance, IEnumerable<Point> solution, string filePath)
+        public static void WriteToSVG(Instance instance, IEnumerable<Point> solution, string filePath)
         {
             var solutionPoint = solution.ToList();
 
@@ -69,12 +61,12 @@ namespace TspLib
             for (int i = 1; i < solutionPoint.Count; i++)
             {
                 Point nextPoint = solutionPoint[i];
-                writeSVGLine(currentPoint, nextPoint, builder, xTransform, yTransform);
+                WriteSVGLine(currentPoint, nextPoint, builder, xTransform, yTransform);
                 currentPoint = nextPoint;
             }
 
 
-            writeSVGLine(currentPoint, solutionPoint[0], builder, xTransform, yTransform);
+            WriteSVGLine(currentPoint, solutionPoint[0], builder, xTransform, yTransform);
 
             builder.AppendLine("</svg>");
             builder.AppendLine("</body>");
@@ -82,18 +74,13 @@ namespace TspLib
 
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
             var file = File.Create(filePath + ".html");
-            using (var logWriter = new System.IO.StreamWriter(file))
+            using (var logWriter = new StreamWriter(file))
             {
                 logWriter.Write(builder);
             };
         }
-
-        internal static void writeToSVG(Instance instance, IEnumerable<Point> solution, object p)
-        {
-            throw new NotImplementedException();
-        }
-
-        private static void writeSVGLine(Point a, Point b, StringBuilder builder, double xTransform, double yTransform)
+              
+        private static void WriteSVGLine(Point a, Point b, StringBuilder builder, double xTransform, double yTransform)
         {
             builder.AppendLine("<line x1=\"" + (int)(a.getX() + xTransform) + "\" y1=\"" + (int)(a.getY() + yTransform) + "\" x2=\"" + (int)(b.getX() + xTransform) + "\" y2=\"" + (int)(b.getY() + yTransform) + "\" style=\"stroke:rgb(255,0,0);stroke-width:5\"/>");
         }
