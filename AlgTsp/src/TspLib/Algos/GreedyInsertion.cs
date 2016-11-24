@@ -36,9 +36,9 @@ namespace TspLib.Algos
                 {
                     //Increased cost of tour if point i is inserted in place j
                     double distanceIncrease =
-                        Utils.euclideanDistance2D(points[j], points[i]) 
-                        + Utils.euclideanDistance2D(points[i], points[nextIndices[j]]) 
-                        - Utils.euclideanDistance2D(points[j], points[nextIndices[j]]);
+                        points[j].CalculateDistanceTo(points[i]) 
+                        + points[i].CalculateDistanceTo(points[nextIndices[j]]) 
+                        - points[j].CalculateDistanceTo(points[nextIndices[j]]);
 
                     if (distanceIncrease < lowestDistanceIncrease)
                     {
