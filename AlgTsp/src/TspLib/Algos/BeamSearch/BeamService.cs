@@ -7,7 +7,7 @@ namespace TspLib.Algos.BeamSearch
 {
     public class BeamService : ISolver
     {
-        private int beamDeph = 1;
+        private int beamDeph = 3;
 
         public string Id
         {

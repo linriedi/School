@@ -6,7 +6,7 @@ namespace TspLib.Algos.BeamSearch
 {
     public class SolutionSet
     {
-        public static int BeamWith = 1;
+        public static int BeamWith = 11;
         
         public PartialSolution[] ParitalSolutionList { get; private set;}
                 
