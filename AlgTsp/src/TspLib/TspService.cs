@@ -22,12 +22,12 @@ namespace TspLib
         {
             Console.WriteLine("Loading instance " + instanceName + "...");
 
-            Instance instance = Instance.load(instancePath + instanceName);
+            Instance instance = Instance.Load(instancePath + instanceName);
 
             Console.WriteLine("Instance has " + instance.Points.Count() + " points.");
 
             Console.WriteLine("Start generating a solution...");
-            var solution = this.solver.Solve(instance);
+            var solution = this.solver.Solve(instance.Points);
 
             Console.WriteLine("Solution for " + instanceName + " has length: " + Utils.euclideanDistance2D(solution.ToList()));
             Console.WriteLine();

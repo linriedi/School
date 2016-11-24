@@ -6,6 +6,6 @@ namespace TspLib.Algos
     {
         string Id { get; }
 
-        IEnumerable<Point> Solve(Instance instance);
+        IEnumerable<Point> Solve(IEnumerable<Point> points);
     }
 }

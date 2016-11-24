@@ -24,7 +24,7 @@ namespace tests
             };
 
             var pilotMethod = this.Container.Resolve<ISolver>();
-            var test = pilotMethod.Solve(new Instance("", "", points));
+            var test = pilotMethod.Solve(points);
         }
 
         [Fact]
@@ -44,7 +44,7 @@ namespace tests
             };
 
             var pilotMethod = this.Container.Resolve<ISolver>();
-            var test = pilotMethod.Solve(new Instance("", "", points));
+            var test = pilotMethod.Solve(points);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace tests
             };
 
             var pilotMethod = this.Container.Resolve<ISolver>();
-            var test = pilotMethod.Solve(new Instance("", "", points));
+            var test = pilotMethod.Solve(points);
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace tests
             };
 
             var pilotMethod = this.Container.Resolve<ISolver>();
-            var test = pilotMethod.Solve(new Instance("", "", points));
+            var test = pilotMethod.Solve(points);
         }
     }
 }

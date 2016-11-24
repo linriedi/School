@@ -23,10 +23,9 @@ namespace TspLib.Algos
             }
         }
 
-        public IEnumerable<Point> Solve(Instance instance)
+        public IEnumerable<Point> Solve(IEnumerable<Point> pointsInput)
         {
-            var sortedPoints = instance
-                .Points
+            var sortedPoints = pointsInput
                 .OrderBy(p => p.Id);
 
             var startPoint = sortedPoints.First();

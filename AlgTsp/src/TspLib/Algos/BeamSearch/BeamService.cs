@@ -35,9 +35,9 @@ namespace TspLib.Algos.BeamSearch
             return solution.BestSoltuion() ;
         }
 
-        public IEnumerable<Point> Solve(Instance instance)
+        public IEnumerable<Point> Solve(IEnumerable<Point> points)
         {
-            return GetOptimalPoints(instance.Points.ToArray());
+            return GetOptimalPoints(points.ToArray());
         }
 
         private SolutionSet CreateFirstSolutionSet(Point[] points)
