@@ -20,11 +20,11 @@ namespace TspLib.FiloIO
 
             foreach(var point in solutionPoint)
             {
-                maxX = Math.Max(maxX, point.getX());
-                maxY = Math.Max(maxY, point.getY());
+                maxX = Math.Max(maxX, point.X);
+                maxY = Math.Max(maxY, point.Y);
 
-                minX = Math.Min(minX, point.getX());
-                minY = Math.Min(minY, point.getY());
+                minX = Math.Min(minX, point.X);
+                minY = Math.Min(minY, point.Y);
             }
 
             double xTransform = margin - minX;
@@ -51,8 +51,8 @@ namespace TspLib.FiloIO
 
             foreach (var point in solutionPoint)
             {
-                var x = (int)(point.getX() + xTransform);
-                var y = (int)(point.getY() + yTransform);
+                var x = (int)(point.X + xTransform);
+                var y = (int)(point.Y + yTransform);
 
                 builder.AppendLine("<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"10\" stroke=\"black\" stroke-width=\"1\" fill=\"black\"/>");
             }
@@ -82,7 +82,7 @@ namespace TspLib.FiloIO
               
         private static void WriteSVGLine(Point a, Point b, StringBuilder builder, double xTransform, double yTransform)
         {
-            builder.AppendLine("<line x1=\"" + (int)(a.getX() + xTransform) + "\" y1=\"" + (int)(a.getY() + yTransform) + "\" x2=\"" + (int)(b.getX() + xTransform) + "\" y2=\"" + (int)(b.getY() + yTransform) + "\" style=\"stroke:rgb(255,0,0);stroke-width:5\"/>");
+            builder.AppendLine("<line x1=\"" + (int)(a.X + xTransform) + "\" y1=\"" + (int)(a.Y + yTransform) + "\" x2=\"" + (int)(b.X + xTransform) + "\" y2=\"" + (int)(b.Y + yTransform) + "\" style=\"stroke:rgb(255,0,0);stroke-width:5\"/>");
         }
     }
 }

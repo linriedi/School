@@ -8,7 +8,7 @@
             for (int i = 0; i < nextPossiblePoints.Length; i++)
             {
                 var point = nextPossiblePoints[i];
-                var distance = point.DistanceTo(startPoint);
+                var distance = point.CalculateDistanceTo(startPoint);
                 bestPoints.InsertIfPossible(distance, point);
             }
             return bestPoints.CreatePointArray();

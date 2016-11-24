@@ -16,7 +16,7 @@ namespace TspLib
          */
         public static double euclideanDistance2D(Point a, Point b)
         {
-            return Math.Sqrt(Math.Pow(a.getX() - b.getX(), 2) + Math.Pow(a.getY() - b.getY(), 2));
+            return Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
         }
 
         /**

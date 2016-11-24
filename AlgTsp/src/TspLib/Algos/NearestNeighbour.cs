@@ -15,11 +15,11 @@ namespace TspLib.Algos
         private static PathResult GetDistanceToNearestNeightbourOfFirstElement(Point currentPoint, IEnumerable<Point> points)
         {
             var sortedNextPoints = points
-                .OrderBy(p => p.DistanceTo(currentPoint));
+                .OrderBy(p => p.CalculateDistanceTo(currentPoint));
 
             var distance = sortedNextPoints
                     .First()
-                    .DistanceTo(currentPoint);
+                    .CalculateDistanceTo(currentPoint);
 
             var nextPoints = sortedNextPoints.WithoudFirst();
             if (nextPoints.Any())

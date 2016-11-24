@@ -14,7 +14,7 @@ namespace TspLib.Algos.BeamSearch
             {
                 return tailLenght 
                     + this.Head.DistanceOpen
-                    + this.LastPoint.DistanceTo(this.Head.Points.First());
+                    + this.LastPoint.CalculateDistanceTo(this.Head.Points.First());
             }
         }
                
@@ -35,11 +35,11 @@ namespace TspLib.Algos.BeamSearch
             var points = fromTail.Points.ToList();
             if (points.Any() == false)
             {
-                this.tailLenght += fromTail.Head.LastPoint.DistanceTo(point);
+                this.tailLenght += fromTail.Head.LastPoint.CalculateDistanceTo(point);
             }
             else
             {
-                this.tailLenght = fromTail.tailLenght + fromTail.LastPoint.DistanceTo(point);
+                this.tailLenght = fromTail.tailLenght + fromTail.LastPoint.CalculateDistanceTo(point);
             }
 
             points.Add(point);
