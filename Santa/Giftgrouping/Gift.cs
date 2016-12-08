@@ -1,6 +1,6 @@
 ﻿namespace Giftgrouping
 {
-    class Gift
+    public class Gift
     {
         public int Id { get; private set; }
         public double Weight { get; private set; }

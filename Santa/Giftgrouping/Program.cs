@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Giftgrouping.CsvIO;
+using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace Giftgrouping
@@ -14,13 +14,13 @@ namespace Giftgrouping
         private static double asiaAustralia = 8;
         private static double southPolar = -60;
 
+        private static string workSpace = @"C:\Users\linri\Desktop\Santa\";
+
         static void Main(string[] args)
         {
-            var file = @"C:\Users\linri\Desktop\Santa\gifts.csv";
-            var gifts = GetGifts(file);
+            var gifts = new Reader().GetGifts(workSpace + "gifts.csv");
 
             var southUnderPolar = South(gifts);
-                      
             var giftsForNorthAmerica = GetGiftsForNorthAmerica(gifts);
             var forSouthAmerica = GetGiftsForSouthAmerica(gifts);
             var giftsForEurope = Europa(gifts);
@@ -39,7 +39,17 @@ namespace Giftgrouping
                 + giftsForAsia.Count
                 + australia.Count
                 + southUnderPolar.Count);
-            
+
+            var writer = new Writer();
+
+            writer.Write(workSpace, "northAmerica", giftsForNorthAmerica);
+            writer.Write(workSpace, "southAmerica", forSouthAmerica);
+            writer.Write(workSpace, "europa", giftsForEurope);
+            writer.Write(workSpace, "africa", africa);
+            writer.Write(workSpace, "asia", giftsForAsia);
+            writer.Write(workSpace, "austrialia", australia);
+            writer.Write(workSpace, "southPole", southUnderPolar);
+
             Console.ReadLine();
         }
               
@@ -121,30 +131,6 @@ namespace Giftgrouping
         {
             return gifts
                 .Where(g => g.Longitude < longitudeAmericaEurope);
-        }
-
-        private static List<Gift> GetGifts(string file)
-        {
-            var reader = new StreamReader(File.OpenRead(file));
-
-            var gifts = new List<Gift>();
-
-            var header = reader.ReadLine();
-            while (!reader.EndOfStream)
-            {
-                var line = reader.ReadLine();
-                var values = line.Split(',');
-
-                var lineList = new Gift(
-                    int.Parse(values[0]),
-                    double.Parse(values[3]),
-                    double.Parse(values[1]),
-                    double.Parse(values[2]));
-
-                gifts.Add(lineList);
-            }
-
-            return gifts;
         }
     }
 }
